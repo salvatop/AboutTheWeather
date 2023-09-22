@@ -2,16 +2,17 @@
 //  AboutTheWeatherApp.swift
 //  AboutTheWeather
 //
-//  Created by little-ac on 2023-09-22.
+//  Created by Salvatore Palazzo on 2023-09-22.
 //
 
 import SwiftUI
 
 @main
-struct AboutTheWeatherApp: App {
+struct SwiftUIWeatherAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            let viewModel = WeatherViewModel()
+            ContentView().environmentObject(viewModel)
         }
     }
 }

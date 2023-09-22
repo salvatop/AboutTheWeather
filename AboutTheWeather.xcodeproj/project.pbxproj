@@ -11,6 +11,14 @@
 		B28FAF8A2ABDF3E40011E864 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28FAF892ABDF3E40011E864 /* ContentView.swift */; };
 		B28FAF8C2ABDF3E70011E864 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B28FAF8B2ABDF3E70011E864 /* Assets.xcassets */; };
 		B28FAF8F2ABDF3E70011E864 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B28FAF8E2ABDF3E70011E864 /* Preview Assets.xcassets */; };
+		B28FAF972ABDF43A0011E864 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28FAF962ABDF43A0011E864 /* HeaderView.swift */; };
+		B28FAF992ABDF46D0011E864 /* HourlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28FAF982ABDF46D0011E864 /* HourlyView.swift */; };
+		B28FAF9B2ABDF4940011E864 /* DailyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28FAF9A2ABDF4940011E864 /* DailyView.swift */; };
+		B28FAF9D2ABDF4D70011E864 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28FAF9C2ABDF4D70011E864 /* Extensions.swift */; };
+		B28FAF9F2ABDF4FF0011E864 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28FAF9E2ABDF4FF0011E864 /* LocationManager.swift */; };
+		B28FAFA22ABDF5550011E864 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28FAFA12ABDF5550011E864 /* Models.swift */; };
+		B28FAFA42ABDF5740011E864 /* APIModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28FAFA32ABDF5740011E864 /* APIModels.swift */; };
+		B28FAFA72ABDF5B40011E864 /* SwURL in Frameworks */ = {isa = PBXBuildFile; productRef = B28FAFA62ABDF5B40011E864 /* SwURL */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +27,13 @@
 		B28FAF892ABDF3E40011E864 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B28FAF8B2ABDF3E70011E864 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B28FAF8E2ABDF3E70011E864 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B28FAF962ABDF43A0011E864 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		B28FAF982ABDF46D0011E864 /* HourlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyView.swift; sourceTree = "<group>"; };
+		B28FAF9A2ABDF4940011E864 /* DailyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyView.swift; sourceTree = "<group>"; };
+		B28FAF9C2ABDF4D70011E864 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B28FAF9E2ABDF4FF0011E864 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		B28FAFA12ABDF5550011E864 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		B28FAFA32ABDF5740011E864 /* APIModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B28FAFA72ABDF5B40011E864 /* SwURL in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,8 +67,10 @@
 		B28FAF862ABDF3E40011E864 /* AboutTheWeather */ = {
 			isa = PBXGroup;
 			children = (
+				B28FAFA92ABDF86C0011E864 /* Common */,
+				B28FAFA02ABDF5420011E864 /* Models */,
+				B28FAF952ABDF4170011E864 /* Views */,
 				B28FAF872ABDF3E40011E864 /* AboutTheWeatherApp.swift */,
-				B28FAF892ABDF3E40011E864 /* ContentView.swift */,
 				B28FAF8B2ABDF3E70011E864 /* Assets.xcassets */,
 				B28FAF8D2ABDF3E70011E864 /* Preview Content */,
 			);
@@ -65,6 +83,35 @@
 				B28FAF8E2ABDF3E70011E864 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B28FAF952ABDF4170011E864 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B28FAF892ABDF3E40011E864 /* ContentView.swift */,
+				B28FAF962ABDF43A0011E864 /* HeaderView.swift */,
+				B28FAF982ABDF46D0011E864 /* HourlyView.swift */,
+				B28FAF9A2ABDF4940011E864 /* DailyView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B28FAFA02ABDF5420011E864 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B28FAFA12ABDF5550011E864 /* Models.swift */,
+				B28FAFA32ABDF5740011E864 /* APIModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B28FAFA92ABDF86C0011E864 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B28FAF9E2ABDF4FF0011E864 /* LocationManager.swift */,
+				B28FAF9C2ABDF4D70011E864 /* Extensions.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +130,9 @@
 			dependencies = (
 			);
 			name = AboutTheWeather;
+			packageProductDependencies = (
+				B28FAFA62ABDF5B40011E864 /* SwURL */,
+			);
 			productName = AboutTheWeather;
 			productReference = B28FAF842ABDF3E40011E864 /* AboutTheWeather.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +161,9 @@
 				Base,
 			);
 			mainGroup = B28FAF7B2ABDF3E40011E864;
+			packageReferences = (
+				B28FAFA52ABDF5B40011E864 /* XCRemoteSwiftPackageReference "SwURL" */,
+			);
 			productRefGroup = B28FAF852ABDF3E40011E864 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,7 +190,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B28FAFA42ABDF5740011E864 /* APIModels.swift in Sources */,
 				B28FAF8A2ABDF3E40011E864 /* ContentView.swift in Sources */,
+				B28FAF9D2ABDF4D70011E864 /* Extensions.swift in Sources */,
+				B28FAF992ABDF46D0011E864 /* HourlyView.swift in Sources */,
+				B28FAFA22ABDF5550011E864 /* Models.swift in Sources */,
+				B28FAF9F2ABDF4FF0011E864 /* LocationManager.swift in Sources */,
+				B28FAF972ABDF43A0011E864 /* HeaderView.swift in Sources */,
+				B28FAF9B2ABDF4940011E864 /* DailyView.swift in Sources */,
 				B28FAF882ABDF3E40011E864 /* AboutTheWeatherApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,6 +399,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B28FAFA52ABDF5B40011E864 /* XCRemoteSwiftPackageReference "SwURL" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cmtrounce/SwURL";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B28FAFA62ABDF5B40011E864 /* SwURL */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B28FAFA52ABDF5B40011E864 /* XCRemoteSwiftPackageReference "SwURL" */;
+			productName = SwURL;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B28FAF7C2ABDF3E40011E864 /* Project object */;
 }
