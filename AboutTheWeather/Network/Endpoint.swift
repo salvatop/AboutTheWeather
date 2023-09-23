@@ -10,13 +10,13 @@ enum Endpoint {
     private var params: String { return "&exclude=minutely&units=imperial" }
     private var apiKey: String { return "YOURKEY" }
 
-    case latAndlon(String, String)
+    case withLatitudeAndLongiture(String, String)
    
     var url: String {
         var location: String
 
         switch self {
-        case .latAndlon(let lat, let lon): location = "lat=\(lat)&lon=\(lon)"
+        case .withLatitudeAndLongiture(let lat, let lon): location = "lat=\(lat)&lon=\(lon)"
         }
         return baseURL + location + params + apiKey
     }

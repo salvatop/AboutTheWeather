@@ -30,7 +30,7 @@ final class WeatherViewModel: ObservableObject {
                 }
             }
          
-            let endpoint = Endpoint.latAndlon("\(location.lat)", "\(location.lon)").url
+            let endpoint = Endpoint.withLatitudeAndLongiture("\(location.lat)", "\(location.lon)").url
             guard let url = URL(string: endpoint) else { return }
 
             let task = URLSession.shared.dataTask(with: url) { data, _, error in
