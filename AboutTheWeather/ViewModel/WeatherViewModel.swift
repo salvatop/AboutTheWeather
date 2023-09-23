@@ -8,6 +8,7 @@
 import CoreLocation
 import Foundation
 import SwiftUI
+import OSLog
 
 final class WeatherViewModel: ObservableObject {
     @Published var locationViewModel = LocationViewModel()
@@ -66,7 +67,7 @@ final class WeatherViewModel: ObservableObject {
                     return
                 }
                 catch {
-                    print(error)
+                    Logger.viewCycle.error("\(error.localizedDescription)")
                 }
             }
             task.resume()

@@ -21,6 +21,7 @@
 		B28FAFA72ABDF5B40011E864 /* SwURL in Frameworks */ = {isa = PBXBuildFile; productRef = B28FAFA62ABDF5B40011E864 /* SwURL */; };
 		B2F24F392ABF436300E9D6A6 /* DateFormatterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F24F382ABF436300E9D6A6 /* DateFormatterExtensions.swift */; };
 		B2F24F3D2ABF534F00E9D6A6 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F24F3C2ABF534F00E9D6A6 /* Endpoint.swift */; };
+		B2F24F412ABF63B300E9D6A6 /* LoggerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F24F402ABF63B300E9D6A6 /* LoggerExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		B28FAFA32ABDF5740011E864 /* APIDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDataModels.swift; sourceTree = "<group>"; };
 		B2F24F382ABF436300E9D6A6 /* DateFormatterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtensions.swift; sourceTree = "<group>"; };
 		B2F24F3C2ABF534F00E9D6A6 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		B2F24F402ABF63B300E9D6A6 /* LoggerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			children = (
 				B28FAF9C2ABDF4D70011E864 /* StringExtensions.swift */,
 				B2F24F382ABF436300E9D6A6 /* DateFormatterExtensions.swift */,
+				B2F24F402ABF63B300E9D6A6 /* LoggerExtensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				B28FAF9F2ABDF4FF0011E864 /* LocationManager.swift in Sources */,
 				B28FAF972ABDF43A0011E864 /* LocationView.swift in Sources */,
 				B28FAF9B2ABDF4940011E864 /* DailyView.swift in Sources */,
+				B2F24F412ABF63B300E9D6A6 /* LoggerExtensions.swift in Sources */,
 				B2F24F3D2ABF534F00E9D6A6 /* Endpoint.swift in Sources */,
 				B28FAF882ABDF3E40011E864 /* AboutTheWeatherApp.swift in Sources */,
 			);
