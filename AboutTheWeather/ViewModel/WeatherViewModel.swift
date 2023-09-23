@@ -78,10 +78,10 @@ final class WeatherViewModel: ObservableObject {
 // MARK: - Location
 
 class LocationViewModel: ObservableObject {
-    var location: String = "New York City, NY"
+    var location: String = "Montreal, QC"
     var currentTemp: String = "75°"
     var currentConditions: String = "Clear"
-    var iconURLString = "https://www.apple.com"
+    var iconURLString = ""
 }
 
 // MARK: - Hourly
@@ -90,7 +90,7 @@ class HourData: ObservableObject, Identifiable {
     var id = UUID()
     var temp = "55ª"
     var hour = "1PM"
-    var imageURL = "https://www.apple.com"
+    var imageURL = ""
 }
 
 // MARK: - Daily
