@@ -23,25 +23,17 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else {
-            return
-        }
+        guard let location = locations.first else { return }
         manager.stopUpdatingLocation()
-        completion?((lon: location.coordinate.longitude,
-                     lat: location.coordinate.latitude))
+        completion?((lon: location.coordinate.longitude, lat: location.coordinate.latitude))
     }
 
-    func resolveName(
-        for location: CLLocation,
-        completion: @escaping (String?) -> Void
-    ) {
+    func resolveName( for location: CLLocation, completion: @escaping (String?) -> Void) {
         let coder = CLGeocoder()
         coder.reverseGeocodeLocation(location) { places, error in
-            guard let place = places?.first, error == nil else {
-                return
-            }
+            guard let place = places?.first, error == nil else { return }
 
-            var name = ""
+            var name = String()
 
             if let city = place.locality {
                 name = city
