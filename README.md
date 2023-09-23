@@ -37,5 +37,12 @@ The API key you will have to be inserted in the [endpoint](https://github.com/sa
 enum Endpoint {
     ..
     private var apiKey: String { return "YOURKEY" }
-
+    ..
 ```
+</br>
+
+## How the App looks like?
+
+<p align="center">
+  <img width="300" height="500" src="app_screenshot.png">
+</p>
