@@ -22,7 +22,7 @@ which helps maintain separation of concerns and ensures a clean and scalable cod
 **Location Service** : Interacts with the device's location services to fetch the user's current location.</br>
 
 5. Common:<br>
-This contains reauseble tools shared app whise, like extensions, helper functions, etc.</br>
+This contains reauseble tools shared app wise, like extensions, helper functions, etc.</br>
 
 5. Network:<br>
 This contains the endpoint used to call the open weather API, the configuable parameter and the APIKey.</br>
