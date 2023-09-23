@@ -1,5 +1,5 @@
 //
-//  Model.swift
+//  WeatherViewModel.swift
 //  AboutTheWeather
 //
 //  Created by Salvatore Palazzo on 2023-09-22.
@@ -9,7 +9,7 @@ import CoreLocation
 import Foundation
 import SwiftUI
 
-class WeatherViewModel: ObservableObject {
+final class WeatherViewModel: ObservableObject {
     @Published var locationViewModel = LocationViewModel()
     @Published var hourlyData: [HourData] = []
     @Published var dailyData: [DayData] = []
@@ -29,18 +29,12 @@ class WeatherViewModel: ObservableObject {
                     self.locationViewModel.location = name ?? "Current"
                 }
             }
-
-            let urlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(location.lat)&lon=\(location.lon)&exclude=minutely&units=imperial&appid=YOURKEY"
             
-            
-            guard let url = URL(string: urlString) else {
-                return
-            }
+            let endpoint = Endpoint.latAndlon("\(location.lat)", "\(location.lon)").url
+            guard let url = URL(string: endpoint) else { return }
 
             let task = URLSession.shared.dataTask(with: url) { data, _, error in
-                guard let data = data, error == nil else {
-                    return
-                }
+                guard let data = data, error == nil else { return }
 
                 do {
                     let result = try JSONDecoder().decode(APIResponse.self, from: data)
