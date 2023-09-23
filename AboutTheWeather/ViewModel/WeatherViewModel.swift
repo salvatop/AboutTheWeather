@@ -81,23 +81,23 @@ class LocationViewModel: ObservableObject {
     var location: String = "Montreal, QC"
     var currentTemp: String = "75°"
     var currentConditions: String = "Clear"
-    var iconURLString = ""
+    var iconURLString = "https://images.freeimages.com/"
 }
 
 // MARK: - Hourly
 
 class HourData: ObservableObject, Identifiable {
     var id = UUID()
-    var temp = "55ª"
-    var hour = "1PM"
-    var imageURL = ""
+    var temp = String()
+    var hour = String()
+    var imageURL = String()
 }
 
 // MARK: - Daily
 
 class DayData: ObservableObject, Identifiable {
     var id = UUID()
-    var day = "Monday"
-    var high = "77°F"
-    var low = "47°F"
+    var day = String()
+    var high = String()
+    var low = String()
 }
