@@ -22,8 +22,20 @@ which helps maintain separation of concerns and ensures a clean and scalable cod
 4. Service:<br>
 **Location Service** : Interacts with the device's location services to fetch the user's current location.</br>
 
-5. Coomon:<br>
+5. Common:<br>
 This contains reauseble tools shared app whise, like extensions, helper functions, etc.</br>
 
-## Usage
+5. Network:<br>
+This contains the endpoint used to call the open weather API, the configuable parameter and the APIKey.</br>
 
+## Usage
+Yuo need to get your API key from [<img width="100" height="40" src="open_weather_logo.png">](https://openweathermap.org/api) 
+<br><br>
+The API key you will have to be inserted in the [endpoint](https://github.com/salvatop/AboutTheWeather/blob/main/AboutTheWeather/Network/Endpoint.swift)
+</br>
+```Swift
+enum Endpoint {
+    ..
+    private var apiKey: String { return "YOURKEY" }
+
+```
