@@ -2,10 +2,9 @@
 
 <img align="left" width="200" height="66" src="weather.png">
 
- <br />
-A single-screen weather app written in Swift/SwiftUI that follows a Model-View-ViewModel (MVVM) architecture, 
-which helps maintain separation of concerns and ensures a clean and scalable codebase. 
-
+<br>A single-screen weather app written in Swift/SwiftUI that follows a Model-View-ViewModel (MVVM) architecture, 
+which helps maintain separation of concerns and ensures a clean and scalable codebase. <br> <br>
+ 
 ## Here's an overview of the architecture
 
 1. Model:<br>
