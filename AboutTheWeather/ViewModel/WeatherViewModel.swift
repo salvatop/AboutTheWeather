@@ -11,9 +11,9 @@ import SwiftUI
 import OSLog
 
 final class WeatherViewModel: ObservableObject {
-    @Published var locationViewModel = LocationViewModel()
-    @Published var hourlyData: [HourData] = []
-    @Published var dailyData: [DayData] = []
+    @Published var locationData = LocationViewModel()
+    @Published var hourlyData: [HourViewModel] = []
+    @Published var dailyData: [DayViewModel] = []
 
     init() {
         fetchData()
@@ -27,11 +27,11 @@ final class WeatherViewModel: ObservableObject {
                                                                longitude: location.lon)
             ) { name in
                 DispatchQueue.main.async {
-                    self.locationViewModel.location = name ?? "Current"
+                    self.locationData.location = name ?? "Current"
                 }
             }
          
-            let endpoint = Endpoint.withLatitudeAndLongiture("\(location.lat)", "\(location.lon)").url
+            let endpoint = Endpoint.withLatitudeAndLongitude("\(location.lat)", "\(location.lon)").url
             guard let url = URL(string: endpoint) else { return }
 
             let task = URLSession.shared.dataTask(with: url) { data, _, error in
@@ -42,12 +42,12 @@ final class WeatherViewModel: ObservableObject {
 
                     DispatchQueue.main.async {
                         // Hourly
-                        self.locationViewModel.currentTemp = "\(Int(result.current.temp))°F"
-                        self.locationViewModel.currentConditions = result.current.weather.first?.main ?? "-"
-                        self.locationViewModel.iconURLString = String.iconUrlString(for: result.current.weather.first?.icon ?? "")
+                        self.locationData.currentTemp = "\(Int(result.current.temp))°F"
+                        self.locationData.currentConditions = result.current.weather.first?.main ?? "-"
+                        self.locationData.iconURLString = String.iconUrlString(for: result.current.weather.first?.icon ?? "")
                         // Hourly
                         self.hourlyData = result.hourly.compactMap({
-                            let data = HourData()
+                            let data = HourViewModel()
                             data.temp = "\(Int($0.temp))°"
                             data.hour = String.hour(from: $0.dt)
                             data.imageURL = String.iconUrlString(for: $0.weather.first?.icon ?? "")
@@ -56,7 +56,7 @@ final class WeatherViewModel: ObservableObject {
 
                         // Daily
                         self.dailyData = result.daily.compactMap({
-                            let data = DayData()
+                            let data = DayViewModel()
                             data.day = String.day(from: $0.dt)
                             data.high = "\($0.temp.max)°F"
                             data.low = "\($0.temp.min)°F"
@@ -73,31 +73,4 @@ final class WeatherViewModel: ObservableObject {
             task.resume()
         }
     }
-}
-
-// MARK: - Location
-
-class LocationViewModel: ObservableObject {
-    var location: String = "Montreal, QC"
-    var currentTemp: String = "75°"
-    var currentConditions: String = "Clear"
-    var iconURLString = "https://images.freeimages.com/"
-}
-
-// MARK: - Hourly
-
-class HourData: ObservableObject, Identifiable {
-    var id = UUID()
-    var temp = String()
-    var hour = String()
-    var imageURL = String()
-}
-
-// MARK: - Daily
-
-class DayData: ObservableObject, Identifiable {
-    var id = UUID()
-    var day = String()
-    var high = String()
-    var low = String()
 }

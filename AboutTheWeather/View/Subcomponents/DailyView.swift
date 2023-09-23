@@ -21,7 +21,7 @@ struct DailyView: View {
 }
 
 struct DayRowView: View {
-    var model: DayData
+    var model: DayViewModel
 
     var body: some View {
         HStack {

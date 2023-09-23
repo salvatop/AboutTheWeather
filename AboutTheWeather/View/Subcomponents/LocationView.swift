@@ -13,14 +13,14 @@ struct LocationView: View {
 
     var body: some View {
         VStack(spacing: -15) {
-            Text(viewModel.locationViewModel.location)
+            Text(viewModel.locationData.location)
                 .bold()
                 .foregroundColor(.white)
                 .font(.system(size: 36))
                 .padding()
 
             SwURLImage(
-                url: URL(string: viewModel.locationViewModel.iconURLString)!,
+                url: URL(string: viewModel.locationData.iconURLString)!,
                 placeholderImage: Image(systemName: "cloud.sun.fill"),
                 transition: .none
             )
@@ -32,13 +32,13 @@ struct LocationView: View {
                     .frame(width: 220, height: 220, alignment: .center)
             })
 
-            Text(viewModel.locationViewModel.currentTemp)
+            Text(viewModel.locationData.currentTemp)
                 .bold()
                 .foregroundColor(.white)
                 .font(.system(size: 90))
                 .padding()
 
-            Text(viewModel.locationViewModel.currentConditions)
+            Text(viewModel.locationData.currentConditions)
                 .bold()
                 .foregroundColor(.white)
                 .font(.system(size: 45))

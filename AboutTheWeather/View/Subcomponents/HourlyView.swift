@@ -23,7 +23,7 @@ struct HourlyView: View {
 }
 
 struct HourView: View {
-    var model: HourData
+    var model: HourViewModel
 
     var body: some View {
         VStack {
