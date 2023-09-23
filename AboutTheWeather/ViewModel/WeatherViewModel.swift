@@ -67,7 +67,7 @@ final class WeatherViewModel: ObservableObject {
                     return
                 }
                 catch {
-                    Logger.viewCycle.error("\(error.localizedDescription)")
+                    Logger.network.error("\(error.localizedDescription)")
                 }
             }
             task.resume()

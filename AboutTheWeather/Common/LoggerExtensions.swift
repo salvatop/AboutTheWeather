@@ -10,5 +10,5 @@ import OSLog
 extension Logger {
     private static var subsystem = Bundle.main.bundleIdentifier!
     
-    static let viewCycle = Logger(subsystem: subsystem, category: "api-errors")
+    static let network = Logger(subsystem: subsystem, category: "api-errors")
 }
