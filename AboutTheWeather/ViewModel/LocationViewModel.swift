@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import CoreLocation
 
 class LocationViewModel: ObservableObject {
-    var location: String = "Montreal, QC"
+    var latitude: Double = 0
+    var longitude: Double = 0
+    var city: String = "Montreal, QC"
     var currentTemp: String = "75°"
     var currentConditions: String = "Clear"
-    var iconURLString = "https://images.freeimages.com/"
+    var iconUrlString = "https://images.freeimages.com/"
 }
