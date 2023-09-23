@@ -29,7 +29,7 @@ final class WeatherViewModel: ObservableObject {
                     self.locationViewModel.location = name ?? "Current"
                 }
             }
-            
+         
             let endpoint = Endpoint.latAndlon("\(location.lat)", "\(location.lon)").url
             guard let url = URL(string: endpoint) else { return }
 

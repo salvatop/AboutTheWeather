@@ -21,7 +21,6 @@
 		B28FAFA72ABDF5B40011E864 /* SwURL in Frameworks */ = {isa = PBXBuildFile; productRef = B28FAFA62ABDF5B40011E864 /* SwURL */; };
 		B2F24F392ABF436300E9D6A6 /* DateFormatterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F24F382ABF436300E9D6A6 /* DateFormatterExtensions.swift */; };
 		B2F24F3D2ABF534F00E9D6A6 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F24F3C2ABF534F00E9D6A6 /* Endpoint.swift */; };
-		B2F24F3F2ABF558400E9D6A6 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F24F3E2ABF558400E9D6A6 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +38,6 @@
 		B28FAFA32ABDF5740011E864 /* APIDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDataModels.swift; sourceTree = "<group>"; };
 		B2F24F382ABF436300E9D6A6 /* DateFormatterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtensions.swift; sourceTree = "<group>"; };
 		B2F24F3C2ABF534F00E9D6A6 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
-		B2F24F3E2ABF558400E9D6A6 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				B2F24F3C2ABF534F00E9D6A6 /* Endpoint.swift */,
-				B2F24F3E2ABF558400E9D6A6 /* NetworkManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -231,7 +228,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2F24F3F2ABF558400E9D6A6 /* NetworkManager.swift in Sources */,
 				B28FAFA42ABDF5740011E864 /* APIDataModels.swift in Sources */,
 				B28FAF8A2ABDF3E40011E864 /* ContentView.swift in Sources */,
 				B2F24F392ABF436300E9D6A6 /* DateFormatterExtensions.swift in Sources */,
