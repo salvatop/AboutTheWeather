@@ -8,7 +8,7 @@
 enum Endpoint {
     private var baseURL: String { return "https://api.openweathermap.org/data/2.5/weather?" }
     private var params: String { return "&exclude=minutely&units=imperial" }
-    private var apiKey: String { return "YOURKEY" }
+    private var apiKey: String { return "&appid=APIKEY" }
 
     case withLatitudeAndLongitude(String, String)
    

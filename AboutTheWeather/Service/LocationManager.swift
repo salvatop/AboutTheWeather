@@ -33,16 +33,16 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
         coder.reverseGeocodeLocation(location) { places, error in
             guard let place = places?.first, error == nil else { return }
 
-            var name = String()
+            var city = String()
 
-            if let city = place.locality {
-                name = city
+            if let locality = place.locality {
+                city = locality
             }
 
             if let region = place.administrativeArea {
-                name += ", \(region)"
+                city += ", \(region)"
             }
-            completion(name)
+            completion(city)
         }
     }
 }

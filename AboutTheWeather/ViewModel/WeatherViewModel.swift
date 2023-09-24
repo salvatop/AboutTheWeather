@@ -54,18 +54,14 @@ final class WeatherViewModel: ObservableObject {
                 self.locationData.iconUrlString = String.iconUrlString(for: data.current.weather.first?.icon ?? "")
                 
                 self.hourlyData = data.hourly.compactMap({
-                    let data = HourViewModel()
-                    data.temp = "\(Int($0.temp))°"
-                    data.hour = String.hour(from: $0.dt)
-                    data.imageURL = String.iconUrlString(for: $0.weather.first?.icon ?? "")
-                    return data
+                    return HourViewModel(temp: "\(Int($0.temp))°",
+                                         hour: String.hour(from: $0.dt),
+                                         imageURL: String.iconUrlString(for: $0.weather.first?.icon ?? ""))
                 })
                 self.dailyData = data.daily.compactMap({
-                    let data = DayViewModel()
-                    data.day = String.day(from: $0.dt)
-                    data.high = "\($0.temp.max)°F"
-                    data.low = "\($0.temp.min)°F"
-                    return data
+                    return DayViewModel(day: String.day(from: $0.dt),
+                                        high: "\($0.temp.max)°F",
+                                        low: "\($0.temp.min)°F")
                 })
             }
         case .failure(let error): Logger.network.error("\(error.localizedDescription)")
