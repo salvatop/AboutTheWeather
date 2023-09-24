@@ -11,7 +11,7 @@ which helps maintain separation of concerns and ensures a clean and scalable cod
 **API Data Model** : Represents the structure of weather data, including properties like temperature, humidity, wind speed, weather conditions, etc. This model is used to decode data from the weather API. <br>
 
 2. ViewModel:<br>
-**WeatherViewModel** : Acts as an intermediary between the Model and View layers. Also responsible for making API requests to fetch weather data from the weather service provider  OpenWeatherMap and formats it for presentation.<br></br>
+**WeatherViewModel** : Acts as an intermediary between the Model and View layers. Also responsible for making API requests to fetch weather data from the weather service provider OpenWeatherMap and formats it for presentation.<br></br>
 **LocationViewModel**: Manages location services, retrieving the user's current location and passing it to the WeatherViewModel for weather data retrieval. <br>
 
 3. View:<br>
@@ -25,12 +25,11 @@ which helps maintain separation of concerns and ensures a clean and scalable cod
 This contains reauseble tools shared app wise, like extensions, helper functions, etc.</br>
 
 5. Network:<br>
-This contains the endpoint used to call the open weather API, the configuable parameter and the APIKey.</br>
+**Endpoint** : url used to call the open weather API, which contains the configuable parameter and the APIKey.</br>
+**NetworkManager** : helper function that use generics to make http call
 
 ## Usage
-Yuo need to get your API key from [<img width="100" height="40" src="open_weather_logo.png">](https://openweathermap.org/api) 
-<br><br>
-The API key you will have to be inserted in the [endpoint](https://github.com/salvatop/AboutTheWeather/blob/main/AboutTheWeather/Network/Endpoint.swift)
+Get the API key from [<img width="100" height="40" src="open_weather_logo.png">](https://openweathermap.org/api) and configure it in the [endpoint](https://github.com/salvatop/AboutTheWeather/blob/main/AboutTheWeather/Network/Endpoint.swift) file
 </br>
 ```Swift
 enum Endpoint {
