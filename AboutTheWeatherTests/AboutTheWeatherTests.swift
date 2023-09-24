@@ -24,8 +24,8 @@ class WeatherAppTests: XCTestCase {
         
         func testWeatherDataFetch() async throws {
             let expectation = XCTestExpectation(description: "Fetch weather data")
-            
-            try await viewModel.fetchData()
+            let endpoint = Endpoint.withLatitudeAndLongitude("45.5019°", "73.5674°")
+            try await viewModel.fetchDataForLocation(endpoint: endpoint)
             
             XCTAssertNotNil(viewModel.hourlyData)
             XCTAssertNotNil(viewModel.dailyData)
