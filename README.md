@@ -35,7 +35,7 @@ The API key you will have to be inserted in the [endpoint](https://github.com/sa
 ```Swift
 enum Endpoint {
     ..
-    private var apiKey: String { return "YOURKEY" }
+    private var apiKey: String { return "&appid=YOURKEY" }
     ..
 ```
 </br>
