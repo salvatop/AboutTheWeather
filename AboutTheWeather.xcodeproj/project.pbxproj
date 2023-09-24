@@ -26,6 +26,7 @@
 		B2F24F542ABF9DBB00E9D6A6 /* HourViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F24F532ABF9DBB00E9D6A6 /* HourViewModel.swift */; };
 		B2F24F562ABF9DE200E9D6A6 /* DayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F24F552ABF9DE200E9D6A6 /* DayViewModel.swift */; };
 		B2F24F582ABF9E5000E9D6A6 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F24F572ABF9E5000E9D6A6 /* LocationViewModel.swift */; };
+		B2F24F5A2ABFA8D000E9D6A6 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F24F592ABFA8D000E9D6A6 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		B2F24F532ABF9DBB00E9D6A6 /* HourViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourViewModel.swift; sourceTree = "<group>"; };
 		B2F24F552ABF9DE200E9D6A6 /* DayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewModel.swift; sourceTree = "<group>"; };
 		B2F24F572ABF9E5000E9D6A6 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		B2F24F592ABFA8D000E9D6A6 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				B2F24F3C2ABF534F00E9D6A6 /* Endpoint.swift */,
+				B2F24F592ABFA8D000E9D6A6 /* NetworkManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				B28FAF8A2ABDF3E40011E864 /* ContentView.swift in Sources */,
 				B2F24F392ABF436300E9D6A6 /* DateFormatterExtensions.swift in Sources */,
 				B28FAF9D2ABDF4D70011E864 /* StringExtensions.swift in Sources */,
+				B2F24F5A2ABFA8D000E9D6A6 /* NetworkManager.swift in Sources */,
 				B2F24F562ABF9DE200E9D6A6 /* DayViewModel.swift in Sources */,
 				B28FAF992ABDF46D0011E864 /* HourlyView.swift in Sources */,
 				B28FAFA22ABDF5550011E864 /* WeatherViewModel.swift in Sources */,

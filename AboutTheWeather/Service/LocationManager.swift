@@ -28,7 +28,7 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
         completion?((lon: location.coordinate.longitude, lat: location.coordinate.latitude))
     }
 
-    func resolveName( for location: CLLocation, completion: @escaping (String?) -> Void) {
+    func resolveName(for location: CLLocation, completion: @escaping (String?) -> Void) {
         let coder = CLGeocoder()
         coder.reverseGeocodeLocation(location) { places, error in
             guard let place = places?.first, error == nil else { return }

@@ -22,15 +22,15 @@ class WeatherAppTests: XCTestCase {
             viewModel = nil
         }
         
-        func testWeatherDataFetch() {
+        func testWeatherDataFetch() async throws {
             let expectation = XCTestExpectation(description: "Fetch weather data")
             
-            viewModel.fetchData()
+            try await viewModel.fetchData()
             
             XCTAssertNotNil(viewModel.hourlyData)
             XCTAssertNotNil(viewModel.dailyData)
             XCTAssertNotNil(viewModel.locationData)
-            
+        
             expectation.fulfill()
             wait(for: [expectation], timeout: 5.0)
         }

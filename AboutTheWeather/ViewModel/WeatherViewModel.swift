@@ -15,11 +15,14 @@ final class WeatherViewModel: ObservableObject {
     @Published var hourlyData: [HourViewModel] = []
     @Published var dailyData: [DayViewModel] = []
     
-    init() {
-        fetchData()
+    init()  {
+        fetchLocation()
+        Task(priority: .medium) {
+            try await fetchData()
+        }
     }
     
-    private func fetchLocation() {
+    func fetchLocation() {
         LocationManager.shared.getLocation { location in
             self.locationData.latitude = location.lat
             self.locationData.longitude = location.lon
@@ -31,48 +34,41 @@ final class WeatherViewModel: ObservableObject {
             }
         }
     }
-    
-    private func fetchData() {
+
+    func sendRequest() async throws -> Result<APIResponse, NetworkManager.ApiError> {
+        let api = NetworkManager()
         let endpoint = Endpoint.withLatitudeAndLongitude("\(self.locationData.latitude)",
                                                          "\(self.locationData.longitude)").url
-        guard let url = URL(string: endpoint) else { return }
+        return try await api.sendRequest(urlString: endpoint, mapToDataModel: APIResponse.self)
+    }
+    
+    func fetchData() async throws {
+        let response = try await sendRequest()
         
-        let task = URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data, error == nil else { return }
-            
-            do {
-                let result = try JSONDecoder().decode(APIResponse.self, from: data)
+        switch response {
+        case .success(let data):
+            DispatchQueue.main.async {
                 
-                DispatchQueue.main.async {
-                    // Hourly
-                    self.locationData.currentTemp = "\(Int(result.current.temp))°F"
-                    self.locationData.currentConditions = result.current.weather.first?.main ?? "-"
-                    self.locationData.iconUrlString = String.iconUrlString(for: result.current.weather.first?.icon ?? "")
-                    // Hourly
-                    self.hourlyData = result.hourly.compactMap({
-                        let data = HourViewModel()
-                        data.temp = "\(Int($0.temp))°"
-                        data.hour = String.hour(from: $0.dt)
-                        data.imageURL = String.iconUrlString(for: $0.weather.first?.icon ?? "")
-                        return data
-                    })
-                    
-                    // Daily
-                    self.dailyData = result.daily.compactMap({
-                        let data = DayViewModel()
-                        data.day = String.day(from: $0.dt)
-                        data.high = "\($0.temp.max)°F"
-                        data.low = "\($0.temp.min)°F"
-                        return data
-                    })
-                }
+                self.locationData.currentTemp = "\(Int(data.current.temp))°F"
+                self.locationData.currentConditions = data.current.weather.first?.main ?? "-"
+                self.locationData.iconUrlString = String.iconUrlString(for: data.current.weather.first?.icon ?? "")
                 
-                return
+                self.hourlyData = data.hourly.compactMap({
+                    let data = HourViewModel()
+                    data.temp = "\(Int($0.temp))°"
+                    data.hour = String.hour(from: $0.dt)
+                    data.imageURL = String.iconUrlString(for: $0.weather.first?.icon ?? "")
+                    return data
+                })
+                self.dailyData = data.daily.compactMap({
+                    let data = DayViewModel()
+                    data.day = String.day(from: $0.dt)
+                    data.high = "\($0.temp.max)°F"
+                    data.low = "\($0.temp.min)°F"
+                    return data
+                })
             }
-            catch {
-                Logger.network.error("\(error.localizedDescription)")
-            }
+        case .failure(let error): Logger.network.error("\(error.localizedDescription)")
         }
-        task.resume()
     }
 }
