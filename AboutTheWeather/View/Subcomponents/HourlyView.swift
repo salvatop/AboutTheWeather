@@ -5,7 +5,6 @@
 //  Created by Salvatore Palazzo on 2023-09-22.
 //
 
-import SwURL
 import SwiftUI
 
 struct HourlyView: View {
@@ -27,20 +26,15 @@ struct HourView: View {
 
     var body: some View {
         VStack {
-            // image, temp, hour
-            SwURLImage(
-                url: URL(string: model.imageURL)!,
-                placeholderImage: Image(systemName: "cloud.sun.fill"),
-                transition: .none
-            )
-            .imageProcessing({ image in
-                return image
+            AsyncImage(url: URL(string: model.imageURL)!) { image in
+                image
                     .renderingMode(.original)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 35, height: 35, alignment: .center)
-
-            })
+            } placeholder: {
+                Image(systemName: "cloud.sun.fill")
+            }
+            .frame(width: 35, height: 35, alignment: .center)
 
             Text(model.temp)
                 .bold()
@@ -56,6 +50,5 @@ struct HourView: View {
 struct HourlyView_Previews: PreviewProvider {
     static var previews: some View {
         HourlyView()
-            .preferredColorScheme(.dark)
     }
 }

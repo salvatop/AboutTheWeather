@@ -5,7 +5,6 @@
 //  Created by Salvatore Palazzo on 2023-09-22.
 //
 
-import SwURL
 import SwiftUI
 
 struct LocationView: View {
@@ -13,24 +12,21 @@ struct LocationView: View {
 
     var body: some View {
         VStack(spacing: -15) {
-            Text(viewModel.locationData.city)
+            Text(viewModel.locationData.locality)
                 .bold()
                 .foregroundColor(.white)
                 .font(.system(size: 36))
                 .padding()
-
-            SwURLImage(
-                url: URL(string: viewModel.locationData.iconUrlString)!,
-                placeholderImage: Image(systemName: "cloud.sun.fill"),
-                transition: .none
-            )
-            .imageProcessing({ image in
-                return image
+            
+            AsyncImage(url: URL(string: viewModel.locationData.iconUrlString)!) { image in
+                image
                     .renderingMode(.original)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 220, height: 220, alignment: .center)
-            })
+            } placeholder: {
+                Image(systemName: "cloud.sun.fill")
+            }
+            .frame(width: 220, height: 220, alignment: .center)
 
             Text(viewModel.locationData.currentTemp)
                 .bold()
@@ -50,6 +46,5 @@ struct LocationView: View {
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
         LocationView()
-            .preferredColorScheme(.dark)
     }
 }

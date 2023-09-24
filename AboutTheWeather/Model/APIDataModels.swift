@@ -20,7 +20,6 @@ struct Current: Codable {
     let weather: [Info]
 }
 
-// Hourly
 struct HourModel: Codable {
     let dt: Float
     let temp: Double
@@ -33,8 +32,6 @@ struct Info: Codable {
     let description: String
     let icon: String
 }
-
-// Daily
 
 struct DayModel: Codable {
     let dt: Float

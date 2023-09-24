@@ -15,56 +15,54 @@ final class WeatherViewModel: ObservableObject {
     @Published var hourlyData: [HourViewModel] = []
     @Published var dailyData: [DayViewModel] = []
     
-    init()  {
-        fetchLocation()
-        Task(priority: .medium) {
-            try await fetchData()
-        }
-    }
+    private var locality: String?
     
-    func fetchLocation() {
-        LocationManager.shared.getLocation { location in
-            self.locationData.latitude = location.lat
-            self.locationData.longitude = location.lon
-            LocationManager.shared.resolveName(for: CLLocation(latitude: location.lat,
-                                                               longitude: location.lon)) { city in
-                DispatchQueue.main.async {
-                    self.locationData.city = city ?? "Current"
-                }
-            }
+    init()  {
+        Task(priority: .medium) {
+            try await fetchLocation()
         }
     }
 
-    func sendRequest() async throws -> Result<APIResponse, NetworkManager.ApiError> {
+    func fetchLocation() async throws  {
+        let locationManager = LocationManager()
+        guard let location = locationManager.locationManager.location else { return }
+     
+        locality = try await locationManager.getPlacemarks(forLocation: location).first?.locality
+        
+        let endpoint = Endpoint.withLatitudeAndLongitude("\(location.coordinate.latitude)",
+                                                         "\(location.coordinate.longitude)")
+        try await fetchDataForLocation(endpoint: endpoint)
+    }
+
+    func sendRequest(endpoint: Endpoint) async throws -> Result<APIResponse, NetworkManager.ApiError> {
         let api = NetworkManager()
-        let endpoint = Endpoint.withLatitudeAndLongitude("\(self.locationData.latitude)",
-                                                         "\(self.locationData.longitude)").url
-        return try await api.sendRequest(urlString: endpoint, mapToDataModel: APIResponse.self)
+        return try await api.sendRequest(urlString: endpoint.url, mapToDataModel: APIResponse.self)
     }
     
-    func fetchData() async throws {
-        let response = try await sendRequest()
+    func fetchDataForLocation(endpoint: Endpoint) async throws {
+        let response = try await sendRequest(endpoint: endpoint)
         
         switch response {
         case .success(let data):
-            DispatchQueue.main.async {
-                
-                self.locationData.currentTemp = "\(Int(data.current.temp))°F"
-                self.locationData.currentConditions = data.current.weather.first?.main ?? "-"
-                self.locationData.iconUrlString = String.iconUrlString(for: data.current.weather.first?.icon ?? "")
-                
-                self.hourlyData = data.hourly.compactMap({
+            DispatchQueue.main.async { [weak self] in
+                self?.locationData = LocationViewModel(locality: self?.locality ?? "",
+                                                      currentTemp: "\(Int(data.current.temp))°F",
+                                                      currentConditions: data.current.weather.first?.main ?? "-",
+                                                       iconUrlString: String.iconUrlString(for: data.current.weather.first?.icon ?? ""))
+               
+                self?.hourlyData = data.hourly.compactMap({
                     return HourViewModel(temp: "\(Int($0.temp))°",
                                          hour: String.hour(from: $0.dt),
                                          imageURL: String.iconUrlString(for: $0.weather.first?.icon ?? ""))
                 })
-                self.dailyData = data.daily.compactMap({
+                self?.dailyData = data.daily.compactMap({
                     return DayViewModel(day: String.day(from: $0.dt),
                                         high: "\($0.temp.max)°F",
                                         low: "\($0.temp.min)°F")
                 })
             }
-        case .failure(let error): Logger.network.error("\(error.localizedDescription)")
+        case .failure(let error):
+            Logger.network.error("\(error.localizedDescription)")
         }
     }
 }

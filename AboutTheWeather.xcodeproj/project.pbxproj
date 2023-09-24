@@ -18,7 +18,6 @@
 		B28FAF9F2ABDF4FF0011E864 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28FAF9E2ABDF4FF0011E864 /* LocationManager.swift */; };
 		B28FAFA22ABDF5550011E864 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28FAFA12ABDF5550011E864 /* WeatherViewModel.swift */; };
 		B28FAFA42ABDF5740011E864 /* APIDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28FAFA32ABDF5740011E864 /* APIDataModels.swift */; };
-		B28FAFA72ABDF5B40011E864 /* SwURL in Frameworks */ = {isa = PBXBuildFile; productRef = B28FAFA62ABDF5B40011E864 /* SwURL */; };
 		B2F24F392ABF436300E9D6A6 /* DateFormatterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F24F382ABF436300E9D6A6 /* DateFormatterExtensions.swift */; };
 		B2F24F3D2ABF534F00E9D6A6 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F24F3C2ABF534F00E9D6A6 /* Endpoint.swift */; };
 		B2F24F412ABF63B300E9D6A6 /* LoggerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F24F402ABF63B300E9D6A6 /* LoggerExtensions.swift */; };
@@ -69,7 +68,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B28FAFA72ABDF5B40011E864 /* SwURL in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +214,6 @@
 			);
 			name = AboutTheWeather;
 			packageProductDependencies = (
-				B28FAFA62ABDF5B40011E864 /* SwURL */,
 			);
 			productName = AboutTheWeather;
 			productReference = B28FAF842ABDF3E40011E864 /* AboutTheWeather.app */;
@@ -269,7 +266,6 @@
 			);
 			mainGroup = B28FAF7B2ABDF3E40011E864;
 			packageReferences = (
-				B28FAFA52ABDF5B40011E864 /* XCRemoteSwiftPackageReference "SwURL" */,
 			);
 			productRefGroup = B28FAF852ABDF3E40011E864 /* Products */;
 			projectDirPath = "";
@@ -586,25 +582,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		B28FAFA52ABDF5B40011E864 /* XCRemoteSwiftPackageReference "SwURL" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/cmtrounce/SwURL";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.6.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		B28FAFA62ABDF5B40011E864 /* SwURL */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B28FAFA52ABDF5B40011E864 /* XCRemoteSwiftPackageReference "SwURL" */;
-			productName = SwURL;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B28FAF7C2ABDF3E40011E864 /* Project object */;
 }
