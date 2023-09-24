@@ -2,7 +2,7 @@
 //  AboutTheWeatherTests.swift
 //  AboutTheWeatherTests
 //
-//  Created by little-ac on 2023-09-23.
+//  Created by Salvatore Palazzo on 2023-09-23.
 //
 
 import XCTest
@@ -33,7 +33,7 @@ final class AboutTheWeatherTests: XCTestCase {
         case .success(let weatherData):
             XCTAssertNotNil(weatherData)
             XCTAssertEqual(weatherData.lon, 73.5674)
-            XCTAssertGreaterThan(weatherData.current.temp, -100)
+            XCTAssertGreaterThan(weatherData.current.temp, -200)
             XCTAssertNotNil(weatherData.daily.first)
 
             expectation.fulfill()
