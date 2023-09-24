@@ -31,7 +31,7 @@ final class WeatherViewModel: ObservableObject {
         
         let endpoint = Endpoint.withLatitudeAndLongitude("\(location.coordinate.latitude)",
                                                          "\(location.coordinate.longitude)")
-        try await fetchDataForLocation(endpoint: endpoint)
+        try await fetchDataForLocation(from: endpoint)
     }
 
     func sendRequest(endpoint: Endpoint) async throws -> Result<APIResponse, NetworkManager.ApiError> {
@@ -39,7 +39,7 @@ final class WeatherViewModel: ObservableObject {
         return try await api.sendRequest(urlString: endpoint.url, mapToDataModel: APIResponse.self)
     }
     
-    func fetchDataForLocation(endpoint: Endpoint) async throws {
+    func fetchDataForLocation(from endpoint: Endpoint) async throws {
         let response = try await sendRequest(endpoint: endpoint)
         
         switch response {
