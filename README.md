@@ -42,5 +42,5 @@ enum Endpoint {
 ## How the App looks like?
 
 <p align="center">
-  <img width="300" height="500" src="app_screenshot.png">
+  <img width="300" height="600" src="app_screenshot.png">
 </p>
