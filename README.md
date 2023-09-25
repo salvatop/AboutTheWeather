@@ -1,4 +1,3 @@
-[![build](https://github.com/salvatop/AboutTheWeather/workflows/build/badge.svg)](https://github.com/salvatop/AboutTheWeather)
 [![CodeQL](https://github.com/salvatop/AboutTheWeather/workflows/CodeQL/badge.svg)](https://github.com/salvatop/AboutTheWeather/actions?query=workflow%3ACodeQL)
 [![GitHub Issues](https://img.shields.io/github/issues-raw/salvatop/AboutTheWeather)](https://github.com/salvatop/AboutTheWeather/issues)
 [![Total Commits](https://img.shields.io/github/last-commit/salvatop/AboutTheWeather)](https://github.com/salvatop/AboutTheWeather/commits)
