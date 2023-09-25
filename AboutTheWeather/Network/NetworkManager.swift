@@ -1,29 +1,44 @@
-//
-//  NetworkManager.swift
-//  AboutTheWeather
-//
-//  Created by little-ac on 2023-09-23.
-//
 
 import Foundation
 
 final class NetworkManager {
-    
-    enum ApiError: Error {
-        case requestError
-        case parsingError
-        case responseError
-        case serverError(code: Int)
-        case unknownError
-    }
-    
+    /// An enumeration representing possible errors that can occur during API requests.
+     enum ApiError: Error {
+         /// An error indicating an issue with forming the request.
+         case requestError
+
+         /// An error indicating an issue with parsing the response data.
+         case parsingError
+
+         /// An error indicating an issue with the server's response.
+         case responseError
+
+         /// An error indicating a specific server error with an HTTP status code.
+         case serverError(code: Int)
+
+         /// An error indicating an unknown or unexpected error.
+         case unknownError
+     }
+
+    /// Creates a `URLRequest` from a given URL string.
+       ///
+       /// - Parameter urlString: The URL string to create the request from.
+       /// - Throws: An `ApiError` if the URL is invalid and cannot form a request.
+       /// - Returns: A `URLRequest` object.
     func makeRequest(from urlString: String) throws -> URLRequest {
         guard let url = URL(string: urlString) else {
             throw ApiError.requestError
         }
         return URLRequest(url: url)
     }
-    
+
+    /// Sends an asynchronous request and parses the response into a specified data model.
+        ///
+        /// - Parameters:
+        ///   - urlString: The URL string to send the request to.
+        ///   - mapToDataModel: The data model type to decode the response into.
+        /// - Throws: An `ApiError` if any errors occur during the request.
+        /// - Returns: A `Result` containing either the decoded data model or an `ApiError`.
     func sendRequest<T: Decodable>(urlString: String,
                                    mapToDataModel: T.Type) async throws -> Result<T, ApiError> {
         

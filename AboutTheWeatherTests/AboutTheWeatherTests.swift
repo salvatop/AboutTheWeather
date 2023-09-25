@@ -41,6 +41,6 @@ final class AboutTheWeatherTests: XCTestCase {
             XCTFail("Failed to fetch weather data: \(error.localizedDescription)")
         }
 
-        wait(for: [expectation], timeout: 5.0)
+        await(for: [expectation], timeout: 5.0)
     }
 }

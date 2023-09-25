@@ -1,10 +1,3 @@
-//
-//  APIDataModels.swift
-//  AboutTheWeather
-//
-//  Created by Salvatore Palazzo on 2023-09-22.
-//
-
 import Foundation
 
 struct APIResponse: Codable {

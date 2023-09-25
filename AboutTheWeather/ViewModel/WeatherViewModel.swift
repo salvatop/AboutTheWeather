@@ -1,10 +1,3 @@
-//
-//  WeatherViewModel.swift
-//  AboutTheWeather
-//
-//  Created by Salvatore Palazzo on 2023-09-22.
-//
-
 import CoreLocation
 import Foundation
 import SwiftUI
@@ -46,7 +39,7 @@ final class WeatherViewModel: ObservableObject {
         case .success(let data):
             DispatchQueue.main.async { [weak self] in
                 self?.locationData = LocationViewModel(locality: self?.locality ?? "",
-                                                      currentTemp: "\(Int(data.current.temp))°F",
+                                                      currentTemp: "\(Int(data.current.temp))°C",
                                                       currentConditions: data.current.weather.first?.main ?? "-",
                                                        iconUrlString: String.iconUrlString(for: data.current.weather.first?.icon ?? ""))
                
@@ -57,8 +50,8 @@ final class WeatherViewModel: ObservableObject {
                 })
                 self?.dailyData = data.daily.compactMap({
                     return DayViewModel(day: String.day(from: $0.dt),
-                                        high: "\($0.temp.max)°F",
-                                        low: "\($0.temp.min)°F")
+                                        high: "\(Int($0.temp.max))°",
+                                        low: "\(Int($0.temp.min))°")
                 })
             }
         case .failure(let error):
