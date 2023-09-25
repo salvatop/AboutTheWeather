@@ -1,10 +1,3 @@
-//
-//  LocationView.swift
-//  AboutTheWeather
-//
-//  Created by Salvatore Palazzo on 2023-09-22.
-//
-
 import SwiftUI
 
 struct LocationView: View {
@@ -17,17 +10,15 @@ struct LocationView: View {
                 .foregroundColor(.white)
                 .font(.system(size: 36))
                 .padding()
-            
-            AsyncImage(url: URL(string: viewModel.locationData.iconUrlString)!) { image in
-                image
-                    .renderingMode(.original)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            } placeholder: {
-                Image(systemName: "cloud.sun.fill")
+            if let urlString = viewModel.locationData.iconUrlString {
+                AsyncImage(url: URL(string: urlString)) { image in
+                    image
+                        .renderingMode(.original)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                } placeholder: {}
+                .frame(width: 220, height: 220, alignment: .center)
             }
-            .frame(width: 220, height: 220, alignment: .center)
-
             Text(viewModel.locationData.currentTemp)
                 .bold()
                 .foregroundColor(.white)

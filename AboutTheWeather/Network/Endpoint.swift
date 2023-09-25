@@ -9,7 +9,7 @@ enum Endpoint {
     private var params: String { return "&exclude=minutely&units=metric" }
 
     /// The API key required for accessing the OpenWeatherMap API.
-    private var apiKey: String { return "&appid=YOUR_API_KEY_HERE" }
+    private var apiKey: String { return "&appid=APIKEY" }
 
     /// Represents an endpoint that requires latitude and longitude coordinates.
     ///

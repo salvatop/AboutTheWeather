@@ -1,46 +1,76 @@
-//
-//  AboutTheWeatherTests.swift
-//  AboutTheWeatherTests
-//
-//  Created by Salvatore Palazzo on 2023-09-23.
-//
-
 import XCTest
+import CoreLocation
 @testable import AboutTheWeather
 
 final class AboutTheWeatherTests: XCTestCase {
     
     var viewModel: WeatherViewModel!
-    var networkManager: NetworkManager!
+    var mockNetworkManager: MockNetworkManager!
+    var mockLocationManager: LocationManager!
+    var info: [Info]!
+    var current: Current!
+    var hourly: [HourModel]!
+    var daily: [DayModel]!
+    var mockResponse: APIResponse!
     
-    override func setUpWithError() throws {
-        viewModel = WeatherViewModel()
-        networkManager = NetworkManager()
-    }
+    let mockLocation = CLLocation(latitude: 37.3349, longitude: -122.0090)
+   
     
-    override func tearDownWithError() throws {
-        viewModel = nil
-        networkManager = nil
-    }
-    
-    func testWeatherDataFetch() async throws {
-        let expectation = XCTestExpectation(description: "Fetch weather data")
+    override func setUp() {
+        super.setUp()
         
-        let endpoint = Endpoint.withLatitudeAndLongitude("45.5019°", "73.5674°")
-        let response = try await networkManager.sendRequest(urlString: endpoint.url,
-                                                            mapToDataModel: APIResponse.self)
-        switch response {
-        case .success(let weatherData):
-            XCTAssertNotNil(weatherData)
-            XCTAssertEqual(weatherData.lon, 73.5674)
-            XCTAssertGreaterThan(weatherData.current.temp, -200)
-            XCTAssertNotNil(weatherData.daily.first)
+        info = [Info(id: 43, main: "Clouds", description: "", icon: "02d")]
+        current = Current(temp: 25.0, weather: info)
+        hourly = [HourModel(dt: 1635517184, temp: 22.0, weather: info)]
+        daily = [DayModel(dt: 1635517184, temp: Temp(min: 20.0, max: 28.0))]
+        mockResponse = APIResponse(lat: 45.5019, lon: 73.5674, current: current, hourly: hourly, daily: daily)
+        
+        mockNetworkManager = MockNetworkManager()
+        mockLocationManager = LocationManager()
+        
+        viewModel = WeatherViewModel(networkManager: mockNetworkManager, locationManager: mockLocationManager)
+    }
 
+    override func tearDown() {
+        viewModel = nil
+        mockNetworkManager = nil
+        mockLocationManager = nil
+        info = nil
+        current = nil
+        hourly = nil
+        daily = nil
+        mockResponse = nil
+        super.tearDown()
+    }
+    
+    func testFetchWeatherData() {
+        let expectation = self.expectation(description: "Weather data fetch")
+        
+        mockLocationManager.location = mockLocation
+        mockNetworkManager.sendRequestResult = .success(mockResponse)
+        
+        viewModel.fetchWeatherData()
+        
+        DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+            XCTAssertEqual(self.viewModel.locationData.currentTemp, "25°C")
             expectation.fulfill()
-        case .failure(let error):
-            XCTFail("Failed to fetch weather data: \(error.localizedDescription)")
         }
+        waitForExpectations(timeout: 5)
+    }
 
-        await(for: [expectation], timeout: 5.0)
+
+    func testFetchWeatherDataWithError() {
+        let expectation = self.expectation(description: "Weather data fetch with error")
+
+        mockLocationManager.location = mockLocation
+        mockNetworkManager.sendRequestResult = .failure(NetworkManager.ApiError.serverError(code: 500))
+
+        viewModel.fetchWeatherData()
+
+        DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+            XCTAssertEqual(self.viewModel.locationData.locality, "Failed to fetch weather data!")
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 5) 
     }
 }

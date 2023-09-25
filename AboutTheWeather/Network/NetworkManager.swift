@@ -1,7 +1,12 @@
-
 import Foundation
 
-final class NetworkManager {
+protocol NetworkManagerProtocol {
+    func sendHTTPRequest(urlString: String, mapToDataModel: Codable.Type) async throws -> Result<APIResponse, NetworkManager.ApiError>
+}
+
+
+final class NetworkManager: NetworkManagerProtocol {
+  
     /// An enumeration representing possible errors that can occur during API requests.
      enum ApiError: Error {
          /// An error indicating an issue with forming the request.
@@ -39,8 +44,7 @@ final class NetworkManager {
         ///   - mapToDataModel: The data model type to decode the response into.
         /// - Throws: An `ApiError` if any errors occur during the request.
         /// - Returns: A `Result` containing either the decoded data model or an `ApiError`.
-    func sendRequest<T: Decodable>(urlString: String,
-                                   mapToDataModel: T.Type) async throws -> Result<T, ApiError> {
+    func sendHTTPRequest(urlString: String, mapToDataModel: Codable.Type) async throws -> Result<APIResponse, ApiError> {
         
         let request = try makeRequest(from: urlString)
         
@@ -53,10 +57,9 @@ final class NetworkManager {
                 guard let decodedResponse = try? JSONDecoder().decode(mapToDataModel, from: data) else {
                     return .failure(.parsingError)
                 }
-                return .success(decodedResponse)
+                return .success(decodedResponse as! APIResponse)
             default: return .failure(.serverError(code: response.statusCode))
             }
-            
         } catch {
             return .failure(.unknownError)
         }

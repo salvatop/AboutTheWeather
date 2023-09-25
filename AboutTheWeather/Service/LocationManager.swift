@@ -2,16 +2,24 @@ import Foundation
 import CoreLocation
 import OSLog
 
+protocol LocationManagerProtocol {
+    var location: CLLocation? { get }
+    func getPlacemarks(forLocation location: CLLocation) async throws -> [CLPlacemark]
+}
+
+
 /// A class responsible for managing location-related functionality.
-final class LocationManager: NSObject, CLLocationManagerDelegate {
-    var locationManager = CLLocationManager()
+final class LocationManager: NSObject, CLLocationManagerDelegate, LocationManagerProtocol {
+    var location: CLLocation?
+    var manager = CLLocationManager()
    
     override init() {
         super.init()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestWhenInUseAuthorization()
+        manager.startUpdatingLocation()
+        self.location = manager.location
     }
      /// Retrieves placemarks for a given location asynchronously.
      ///
