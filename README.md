@@ -1,3 +1,11 @@
+[![build](https://github.com/salvatop/AboutTheWeather/workflows/build/badge.svg)](https://github.com/salvatop/AboutTheWeather)
+[![CodeQL](https://github.com/salvatop/AboutTheWeather/workflows/CodeQL/badge.svg)](https://github.com/salvatop/AboutTheWeather/actions?query=workflow%3ACodeQL)
+[![GitHub Issues](https://img.shields.io/github/issues-raw/salvatop/AboutTheWeather)](https://github.com/salvatop/AboutTheWeather/issues)
+[![Total Commits](https://img.shields.io/github/last-commit/salvatop/AboutTheWeather)](https://github.com/salvatop/AboutTheWeather/commits)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/4w/salvatop/AboutTheWeather?foo=bar)](https://github.com/salvatop/AboutTheWeather/commits)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/salvatop/AboutTheWeather/blob/main/LICENSE)
+![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
+
 # About The Weather
 
 <img align="left" width="200" height="66" src="weather.png">
