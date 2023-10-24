@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  AboutTheWeather
-//
-//  Created by Salvatore Palazzo on 2023-09-22.
-//
-
 import SwiftUI
 
 struct ContentView: View {
@@ -20,9 +13,9 @@ struct ContentView: View {
 
             ScrollView {
                 VStack {
-                    LocationView()
-                    HourlyView()
-                    DailyView()
+                    LocationView(viewModel: viewModel)
+                    HourlyView(viewModel: viewModel)
+                    DailyView(viewModel: viewModel)
                 }
             }
         }

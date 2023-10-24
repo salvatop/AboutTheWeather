@@ -1,14 +1,7 @@
-//
-//  DailyView.swift
-//  AboutTheWeather
-//
-//  Created by Salvatore Palazzo on 2023-09-22.
-//
-
 import SwiftUI
 
 struct DailyView: View {
-    @EnvironmentObject var viewModel: WeatherViewModel
+    @StateObject var viewModel: WeatherViewModel
 
     var body: some View {
         VStack {
@@ -44,6 +37,7 @@ struct DayRowView: View {
 
 struct DailyView_Previews: PreviewProvider {
     static var previews: some View {
-        DailyView()
+        DailyView(viewModel: WeatherViewModel(networkManager: NetworkManager() as NetworkManagerProtocol,
+                                                locationManager: LocationManager() as LocationManagerProtocol))
     }
 }

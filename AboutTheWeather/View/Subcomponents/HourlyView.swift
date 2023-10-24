@@ -1,14 +1,7 @@
-//
-//  HourlyView.swift
-//  AboutTheWeather
-//
-//  Created by Salvatore Palazzo on 2023-09-22.
-//
-
 import SwiftUI
 
 struct HourlyView: View {
-    @EnvironmentObject var viewModel: WeatherViewModel
+    @StateObject var viewModel: WeatherViewModel
 
     var body: some View {
         ScrollView(.horizontal) {
@@ -32,7 +25,7 @@ struct HourView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             } placeholder: {
-                Image(systemName: "cloud.sun.fill")
+                ProgressView()
             }
             .frame(width: 35, height: 35, alignment: .center)
 
@@ -49,6 +42,7 @@ struct HourView: View {
 
 struct HourlyView_Previews: PreviewProvider {
     static var previews: some View {
-        HourlyView()
+        HourlyView(viewModel: WeatherViewModel(networkManager: NetworkManager() as NetworkManagerProtocol,
+                                               locationManager: LocationManager() as LocationManagerProtocol))
     }
 }
