@@ -33,6 +33,7 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, LocationManage
             let placemarks = try await geocoder.reverseGeocodeLocation(location)
             return placemarks
         } catch {
+            Logger.network.log("\(error)")
             throw error
         }
     }

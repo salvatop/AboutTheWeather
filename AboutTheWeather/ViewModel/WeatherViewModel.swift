@@ -1,7 +1,7 @@
 import CoreLocation
 import Foundation
 import SwiftUI
-import os.log
+import OSLog
 
 final class WeatherViewModel: ObservableObject {
     @Published var locationData = LocationViewModel()
@@ -26,7 +26,7 @@ final class WeatherViewModel: ObservableObject {
                 self.locality = try await locationManager.getPlacemarks(forLocation: location).first?.locality
                 try await self.fetchDataForLocation(location)
             } catch {
-                os_log("Error fetching weather data: %@", log: .default, type: .error, error.localizedDescription)
+                Logger.network.log("Error fetching location data:\(error.localizedDescription)")
             }
         }
     }
@@ -43,7 +43,7 @@ final class WeatherViewModel: ObservableObject {
         case .success(let data): updateWeatherData(with: data)
         case .failure(let error):
             locationData.locality = "Failed to fetch weather data!"
-            os_log("Weather data request failed: %@", log: .default, type: .error, error.localizedDescription)
+            Logger.network.log("Weather data request failed: \(error.localizedDescription)")
         }
     }
 
