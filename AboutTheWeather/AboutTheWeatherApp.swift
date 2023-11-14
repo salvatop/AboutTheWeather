@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct SwiftUIWeatherAppApp: App {
+struct SwiftUIWeatherApp: App {
     var body: some Scene {
         WindowGroup {
             let networkManager = NetworkManager()
