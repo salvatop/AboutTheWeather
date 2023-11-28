@@ -4,10 +4,7 @@ import SwiftUI
 import OSLog
 
 final class WeatherViewModel: ObservableObject {
-    @Published var locationData = LocationViewModel(locality: "",
-                                                    currentTemp: "",
-                                                    currentConditions: "",
-                                                    iconUrlString: "")
+    @Published var locationData = LocationViewModel(locality: "", currentTemp: "", currentConditions: "", iconUrlString: "")
     @Published var hourlyData: [HourViewModel] = []
     @Published var dailyData: [DayViewModel] = []
 
@@ -39,7 +36,8 @@ final class WeatherViewModel: ObservableObject {
     }
 
     private func fetchDataForLocation(_ location: CLLocation) async throws {
-        let endpoint = Endpoint.withLatitudeAndLongitude("\(location.coordinate.latitude)", "\(location.coordinate.longitude)")
+        let endpoint = Endpoint.withLatitudeAndLongitude("\(location.coordinate.latitude)", 
+                                                         "\(location.coordinate.longitude)")
         let response = try await sendRequest(endpoint: endpoint)
 
         switch response {

@@ -31,7 +31,9 @@ final class NetworkManager: NetworkManagerProtocol {
        /// - Throws: An `ApiError` if the URL is invalid and cannot form a request.
        /// - Returns: A `URLRequest` object.
     func makeRequest(from urlString: String) throws -> URLRequest {
-        guard let url = URL(string: urlString) else {
+
+        guard let safeUrlString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed),
+                let url = URL(string: safeUrlString) else {
             throw ApiError.requestError
         }
         return URLRequest(url: url)
