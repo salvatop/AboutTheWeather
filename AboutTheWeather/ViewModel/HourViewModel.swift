@@ -1,8 +1,8 @@
 import Foundation
 
 struct HourViewModel: Identifiable {
-    var id = UUID()
-    var temp: String
-    var hour: String
-    var imageURL: String
+    let id = UUID()
+    let temp: String
+    let hour: String
+    let imageURL: String
 }

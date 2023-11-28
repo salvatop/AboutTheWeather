@@ -1,8 +1,8 @@
 import Foundation
 
 struct DayViewModel: Identifiable {
-    var id = UUID()
-    var day: String
-    var high: String
-    var low: String
+    let id = UUID()
+    let day: String
+    let high: String
+    let low: String
 }

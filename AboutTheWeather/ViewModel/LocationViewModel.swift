@@ -2,7 +2,7 @@ import Foundation
 
 struct LocationViewModel {
     var locality: String
-    var currentTemp: String
-    var currentConditions: String
-    var iconUrlString: String
+    let currentTemp: String
+    let currentConditions: String
+    let iconUrlString: String
 }
