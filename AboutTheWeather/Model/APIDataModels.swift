@@ -1,37 +1,37 @@
 import Foundation
 
-struct APIResponse: Codable {
-    let lat: Float
-    let lon: Float
+struct APIResponse: Decodable {
+    let lat: Double
+    let lon: Double
     let current: Current
     let hourly: [HourModel]
     let daily: [DayModel]
 }
 
-struct Current: Codable {
+struct Current: Decodable {
     let temp: Double
     let weather: [Info]
 }
 
-struct HourModel: Codable {
-    let dt: Float
+struct HourModel: Decodable {
+    let dt: Double
     let temp: Double
     let weather: [Info]
 }
 
-struct Info: Codable {
+struct Info: Decodable {
     let id: Int
     let main: String
     let description: String
     let icon: String
 }
 
-struct DayModel: Codable {
-    let dt: Float
+struct DayModel: Decodable {
+    let dt: Double
     let temp: Temp
 }
 
-struct Temp: Codable {
+struct Temp: Decodable {
     let min: Double
     let max: Double
 }

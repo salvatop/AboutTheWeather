@@ -4,7 +4,10 @@ import SwiftUI
 import OSLog
 
 final class WeatherViewModel: ObservableObject {
-    @Published var locationData = LocationViewModel()
+    @Published var locationData = LocationViewModel(locality: "",
+                                                    currentTemp: "",
+                                                    currentConditions: "",
+                                                    iconUrlString: "")
     @Published var hourlyData: [HourViewModel] = []
     @Published var dailyData: [DayViewModel] = []
 
@@ -59,14 +62,14 @@ final class WeatherViewModel: ObservableObject {
             self?.hourlyData = data.hourly.compactMap({
                 return HourViewModel(
                     temp: "\(Int($0.temp))°",
-                    hour: String.hour(from: $0.dt),
+                    hour: String.hour(from: Float($0.dt)),
                     imageURL: String.iconUrlString(for: $0.weather.first?.icon ?? "")
                 )
             })
 
             self?.dailyData = data.daily.compactMap({
                 return DayViewModel(
-                    day: String.day(from: $0.dt),
+                    day: String.day(from: Float($0.dt)),
                     high: "\(Int($0.temp.max))°",
                     low: "\(Int($0.temp.min))°"
                 )

@@ -1,7 +1,7 @@
 import Foundation
 
 protocol NetworkManagerProtocol {
-    func sendHTTPRequest(urlString: String, mapToDataModel: Codable.Type) async throws -> Result<APIResponse, NetworkManager.ApiError>
+    func sendHTTPRequest(urlString: String, mapToDataModel: Decodable.Type) async throws -> Result<APIResponse, NetworkManager.ApiError>
 }
 
 
@@ -44,7 +44,7 @@ final class NetworkManager: NetworkManagerProtocol {
         ///   - mapToDataModel: The data model type to decode the response into.
         /// - Throws: An `ApiError` if any errors occur during the request.
         /// - Returns: A `Result` containing either the decoded data model or an `ApiError`.
-    func sendHTTPRequest(urlString: String, mapToDataModel: Codable.Type) async throws -> Result<APIResponse, ApiError> {
+    func sendHTTPRequest(urlString: String, mapToDataModel: Decodable.Type) async throws -> Result<APIResponse, ApiError> {
         
         let request = try makeRequest(from: urlString)
         
